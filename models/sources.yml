@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+    - name: AIRBNB
+      description: "AIRBNB is the source DB name"
+      schema: RAW
+      tables:
+        - name: listings
+          identifier: raw_listings
+
+        - name: hosts
+          description: "this has raw_hosts as source"
+          identifier: raw_hosts
+
+        - name: reviews
+          identifier: raw_reviews
+          loaded_at_field: date
+          freshness: 
+            warn_after: {count: 1, period: hour}
+            error_after: {count: 24, period: hour}
+
